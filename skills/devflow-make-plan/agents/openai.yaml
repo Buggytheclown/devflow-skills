@@ -1,0 +1,7 @@
+interface:
+  display_name: "План — создать"
+  short_description: "Подготовить технический план реализации"
+  default_prompt: "Подготовь технический план реализации, используя $devflow-make-plan."
+
+policy:
+  allow_implicit_invocation: false

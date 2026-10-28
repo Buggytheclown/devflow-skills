@@ -1,0 +1,7 @@
+interface:
+  display_name: "Спека — проверить"
+  short_description: "Проверить полноту и согласованность спецификации"
+  default_prompt: "Проверь спецификацию, используя $devflow-check-spec."
+
+policy:
+  allow_implicit_invocation: false

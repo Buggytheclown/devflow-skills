@@ -1,0 +1,7 @@
+interface:
+  display_name: "План — проверить"
+  short_description: "Проверить реализуемость и полноту плана"
+  default_prompt: "Проверь технический план, используя $devflow-check-plan."
+
+policy:
+  allow_implicit_invocation: false

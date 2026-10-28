@@ -1,0 +1,7 @@
+interface:
+  display_name: "Дифф — создать"
+  short_description: "Реализовать план и проверить полученные изменения"
+  default_prompt: "Реализуй согласованный план, используя $devflow-make-diff."
+
+policy:
+  allow_implicit_invocation: false

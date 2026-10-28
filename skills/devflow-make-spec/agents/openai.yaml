@@ -1,0 +1,7 @@
+interface:
+  display_name: "Спека — создать"
+  short_description: "Сформулировать спецификацию через devflow"
+  default_prompt: "Помоги сформулировать спецификацию, используя $devflow-make-spec."
+
+policy:
+  allow_implicit_invocation: false
