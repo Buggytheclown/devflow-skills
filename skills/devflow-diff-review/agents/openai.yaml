@@ -1,0 +1,7 @@
+interface:
+  display_name: "Дифф — проверить"
+  short_description: "Пять независимых проходов и проверка замечаний"
+  default_prompt: "Проверь изменение, используя $devflow-diff-review."
+
+policy:
+  allow_implicit_invocation: false
