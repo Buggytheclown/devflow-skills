@@ -1,6 +1,6 @@
 interface:
   display_name: "Дифф — проверить"
-  short_description: "Пять независимых проходов и проверка замечаний"
+  short_description: "Ревью full или light с отдельной валидацией"
   default_prompt: "Проверь изменение, используя $devflow-diff-review."
 
 policy:

@@ -17,6 +17,14 @@ REVIEWERS = {
     "adversarial": ["adversarial"],
     "deployment": ["deployment"],
 }
+PROFILES = {
+    "full": {role: "gpt-6.1-sol" for role in (*REVIEWERS, "validator")},
+    "light": {
+        "bugs-impl": "gpt-6.1-sol",
+        "docs-tests": "gpt-6.1-terra",
+        "validator": "gpt-6.1-terra",
+    },
+}
 
 
 def pr_id(value):
@@ -25,7 +33,10 @@ def pr_id(value):
     return value
 
 
-def create_run(config_path, pr):
+def create_run(config_path, pr, mode="full"):
+    if mode not in PROFILES:
+        raise ValueError(f"unknown review mode: {mode}")
+    models = PROFILES[mode]
     config = json.loads(config_path.read_text(encoding="utf-8"))
     root_value = config.get("review_logs_root") if isinstance(config, dict) else None
     if not isinstance(root_value, str) or not root_value.strip():
@@ -60,7 +71,8 @@ def create_run(config_path, pr):
         "run_id": uid,
         "subject": {"kind": "pr" if pr else "diff", "pr_id": pr, "url": None},
         "status": "running",
-        "mode": "full",
+        "mode": mode,
+        "profile": mode,
         "previous_run": None,
         "started_at": datetime.now(timezone.utc).isoformat(),
         "finished_at": None,
@@ -81,10 +93,13 @@ def create_run(config_path, pr):
                 "role": role,
                 "lenses": lenses,
                 "agent_id": None,
-                "requested_model": None,
+                "requested_model": models.get(role),
                 "reported_model": None,
-                "parameters": {},
-                "status": "running" if role == "coordinator" else "pending",
+                "parameters": {"reasoning_effort": "high"} if role in models else {},
+                "status": (
+                    "running" if role == "coordinator"
+                    else "pending" if role in models else "not_requested"
+                ),
                 "started_at": None,
                 "finished_at": None,
                 "usage": None,
@@ -97,9 +112,10 @@ def create_run(config_path, pr):
             json.dump(metadata, stream, ensure_ascii=False, indent=2)
             stream.write("\n")
         for role, lenses in REVIEWERS.items():
+            status = "pending" if role in models else "not_requested"
             for lens in lenses:
                 with (run_dir / f"{lens}.md").open("x", encoding="utf-8") as stream:
-                    stream.write(f"# {lens}\n\nstatus: pending\nreviewer: {role}\n")
+                    stream.write(f"# {lens}\n\nstatus: {status}\nreviewer: {role}\n")
         for filename, title in [("validation.md", "Валидация"), ("result.md", "Результат")]:
             with (run_dir / filename).open("x", encoding="utf-8") as stream:
                 stream.write(f"# {title}\n\nstatus: pending\n")
@@ -112,9 +128,10 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pr", type=pr_id, help="Canonical numeric PR ID; omit for a local diff")
     parser.add_argument("--config", type=Path, default=Path.home() / ".devflow/config.json")
+    parser.add_argument("--mode", choices=PROFILES, default="full", help="Review mode (default: full)")
     args = parser.parse_args()
     try:
-        run_dir = create_run(args.config.expanduser(), args.pr)
+        run_dir = create_run(args.config.expanduser(), args.pr, args.mode)
     except (OSError, ValueError) as exc:
         print(f"Cannot create review journal: {exc}", file=sys.stderr)
         return 1
