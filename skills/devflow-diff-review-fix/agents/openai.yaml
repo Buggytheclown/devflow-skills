@@ -1,0 +1,7 @@
+interface:
+  display_name: "дифф - исправить замечания"
+  short_description: "Разобрать замечания PR и выполнить согласованные исправления"
+  default_prompt: "Используй $devflow-diff-review-fix <PR_URL>."
+
+policy:
+  allow_implicit_invocation: false

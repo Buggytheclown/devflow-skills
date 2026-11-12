@@ -1,6 +1,6 @@
 ---
 name: devflow-check-plan
-description: "Use only when explicitly invoked as $devflow-check-plan or selected as «План — проверить». Do not activate automatically based on task content. Review a technical design or implementation plan for feasibility, requirement coverage, unresolved consequential decisions, and simpler reliable alternatives. Adapted from arc-plan-review."
+description: "Review a technical design or implementation plan for feasibility, requirement coverage, unresolved consequential decisions, and simpler reliable alternatives. Adapted from arc-plan-review."
 ---
 
 # Проверить технический план

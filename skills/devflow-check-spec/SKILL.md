@@ -1,6 +1,6 @@
 ---
 name: devflow-check-spec
-description: "Use only when explicitly invoked as $devflow-check-spec or selected as «Спека — проверить». Do not activate automatically based on task content. Critically review an existing software specification against the user's problem, scenarios, constraints, and available evidence. Find consequential gaps, contradictions, unsupported assumptions, and opportunities to simplify requirements."
+description: "Critically review an existing software specification against the user's problem, scenarios, constraints, and available evidence. Find consequential gaps, contradictions, unsupported assumptions, and opportunities to simplify requirements."
 ---
 
 # Проверить спецификацию

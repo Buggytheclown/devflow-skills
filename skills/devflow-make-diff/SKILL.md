@@ -1,6 +1,6 @@
 ---
 name: devflow-make-diff
-description: "Use only when explicitly invoked as $devflow-make-diff or selected as «Дифф — создать». Do not activate automatically based on task content. Implement an agreed plan or selected scope, resolve local implementation details, handle consequential requirement conflicts, and validate the combined result against the intended outcome."
+description: "Implement an agreed plan or selected scope, resolve local implementation details, handle consequential requirement conflicts, and validate the combined result against the intended outcome."
 ---
 
 # Реализовать согласованное решение

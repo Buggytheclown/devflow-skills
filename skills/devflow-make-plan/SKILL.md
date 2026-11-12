@@ -1,6 +1,6 @@
 ---
 name: devflow-make-plan
-description: "Use only when explicitly invoked as $devflow-make-plan or selected as «План — создать». Do not activate automatically based on task content. Develop an implementable technical design and delivery plan from understood requirements. Investigate the existing system, compare consequential alternatives, explain the architecture, and define implementation and validation steps."
+description: "Develop an implementable technical design and delivery plan from understood requirements. Investigate the existing system, compare consequential alternatives, explain the architecture, and define implementation and validation steps."
 ---
 
 # Спроектировать решение и реализацию

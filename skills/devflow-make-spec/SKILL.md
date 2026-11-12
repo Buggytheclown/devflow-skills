@@ -1,6 +1,6 @@
 ---
 name: devflow-make-spec
-description: "Use only when explicitly invoked as $devflow-make-spec or selected as «Спека — создать». Do not activate automatically based on task content. Help formulate or refine a software specification by investigating the problem, clarifying consequential requirements, and agreeing on observable outcomes."
+description: "Help formulate or refine a software specification by investigating the problem, clarifying consequential requirements, and agreeing on observable outcomes."
 ---
 
 # Сформулировать спецификацию
